@@ -28,6 +28,17 @@ while opção != 6:
             print('Encerrando programa...')
             sleep(1.2)
         print('-'*50)
+    elif opção == 2:
+        if status_pendente_tarefa:
+            for listagem_pendente in range(len(status_pendente_tarefa)):
+                print('Tarefa pendente: {}'.format(status_pendente_tarefa[listagem_pendente]))
+            else:
+                print('Sem tarefas pendentes.')
+        if status_concluída_tarefa:
+            for listagem_concluida in range(len(status_concluída_tarefa)):
+                print('Tarefa conluída: {}'.format(status_concluída_tarefa[listagem_concluida]))
+        else:
+            print('Nenhuma tarefa conluída.')
     print('-=' * 20)
     print('   ------------MENU ABERTO------------')
     print('''    [ 1 ] | Adicionar tarefas
