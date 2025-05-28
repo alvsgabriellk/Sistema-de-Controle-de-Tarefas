@@ -15,6 +15,7 @@ print('-='*20)
 opção = int(input('-----> Digite aqui a alternativa:'))
 while opção != 6:
     if opção == 1:
+        print('-' * 50)
         duvida_tarefa_nova = str(input('-----> Deseja adicionar uma tarefa? s/n:')).strip().upper()[0]
         if duvida_tarefa_nova == 'S':
             quantidade_tarefas = int(input('Quantas tarefas vai querer adicionar?:'))
