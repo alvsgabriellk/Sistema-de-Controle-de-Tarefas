@@ -17,14 +17,14 @@ while opção != 6:
     if opção == 1:
         def criar_tarefa():
             print('-' * 50)
-            duvida_tarefa_nova = str(input('-----> Deseja adicionar uma tarefa? s/n:')).strip().upper()[0]
-            if duvida_tarefa_nova == 'S':
+            duvida_tarefa_nova = str(input('-----> Deseja adicionar uma tarefa? s/n:')).strip().upper()[0:3]
+            if duvida_tarefa_nova == 'SIM' or duvida_tarefa_nova == 'S':
                 quantidade_tarefas = int(input('Quantas tarefas vai querer adicionar?:'))
                 for tarefa in range(quantidade_tarefas):
                     nova_tarefa = str(input('Nova tarefa:'))
                     status_pendente_tarefa.append(nova_tarefa)
                 print('--> Todas as {} tarefas foram adicionadas na lista!'.format(quantidade_tarefas))
-            elif duvida_tarefa_nova == 'N':
+            elif duvida_tarefa_nova == 'N' or duvida_tarefa_nova == 'NAO':
                 print('Encerrando programa...')
                 sleep(1.2)
             print('-'*50)
@@ -46,8 +46,8 @@ while opção != 6:
     elif opção == 3:
         def concluir_tarefas():
             print('-'*45)
-            concluir_tarefa = str(input('-----> Deseja concluir alguma tarefa? s/n:')).strip().upper()[0]
-            if concluir_tarefa == 'S':
+            concluir_tarefa = str(input('-----> Deseja concluir alguma tarefa? s/n:')).strip().upper()[0:3]
+            if concluir_tarefa == 'S' or concluir_tarefa == 'SIM':
                 inspecionar_tarefa = str(input('Digite aqui o nome da tarefa:')).strip()
                 if inspecionar_tarefa in status_pendente_tarefa:
                     index = status_pendente_tarefa.index(inspecionar_tarefa)
@@ -56,7 +56,7 @@ while opção != 6:
                     print('Tarefa marcada como conluída!')
                 elif inspecionar_tarefa not in status_pendente_tarefa:
                     print('Tarefa não encontrada.')
-            elif concluir_tarefa == 'N':
+            elif concluir_tarefa == 'N' or concluir_tarefa == 'NAO':
                 print('Encerrando programa...')
                 sleep(1.2)
             print('-' * 45)
@@ -65,26 +65,34 @@ while opção != 6:
         def remoção_tarefas():
             inspecionar_tarefa = str(input('-----> Digite o nome da tarefa:')).strip()
             if inspecionar_tarefa in status_pendente_tarefa:
-                confirmar_remove = str(input('Deseja remover essa tarefa? s/n:')).strip().upper()[0]
-                # remoção de tarefa pendente
-                index_pendente = status_pendente_tarefa.index(inspecionar_tarefa)
-                status_pendente_tarefa.remove(status_pendente_tarefa[index_pendente])
-                print('Removendo tarefa...')
-                sleep(1.5)
-                print('Tarefa removida!')
+                confirmar_remove = str(input('Deseja remover essa tarefa? s/n:')).strip().upper()[0:3]
+                if confirmar_remove == 'S' or confirmar_remove == 'SIM':
+                    # remoção de tarefa pendente
+                    index_pendente = status_pendente_tarefa.index(inspecionar_tarefa)
+                    status_pendente_tarefa.remove(status_pendente_tarefa[index_pendente])
+                    print('Removendo tarefa...')
+                    sleep(1.5)
+                    print('Tarefa removida!')
+                elif confirmar_remove == 'N' or confirmar_remove == 'NAO':
+                    print('Encerrando programa...')
+                    sleep(1.2)
             elif inspecionar_tarefa in status_concluída_tarefa:
-                confirmar_remove = str(input('Deseja remover essa tarefa? s/n:')).strip().upper()[0]
-                # remoção de tarefa concluída
-                index_concluida = status_concluída_tarefa.index(inspecionar_tarefa)
-                status_concluída_tarefa.remove(status_concluída_tarefa[index_concluida])
-                print('Removendo tarefa...')
-                sleep(1.5)
-                print('Tarefa removida!')
+                confirmar_remove = str(input('Deseja remover essa tarefa? s/n:')).strip().upper()[0:3]
+                if confirmar_remove == 'S' or confirmar_remove == 'SIM':
+                    # remoção de tarefa concluída
+                    index_concluida = status_concluída_tarefa.index(inspecionar_tarefa)
+                    status_concluída_tarefa.remove(status_concluída_tarefa[index_concluida])
+                    print('Removendo tarefa...')
+                    sleep(1.5)
+                    print('Tarefa removida!')
+                elif confirmar_remove == 'N' or confirmar_remove == 'NAO':
+                    print('Encerrando programa...')
+                    sleep(1.2)
             else:
                 print('Tarefa não encontrada.')
         remoção_tarefas()
     elif opção == 5:
-        print('A fazer')
+        verificar_status = str(input('Qual status de tarefa você deseja ver? Concluída/Pendente:')).strip().upper()[0]
     print('-=' * 20)
     print('   ------------MENU ABERTO------------')
     print('''    [ 1 ] | Adicionar tarefas
