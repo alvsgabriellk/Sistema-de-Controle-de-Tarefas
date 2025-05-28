@@ -29,12 +29,15 @@ while opção != 6:
         print('-'*50)
     elif opção == 2:
         print('-'*35)
-        if status_pendente_tarefa:
-            for listagem_pendente in range(len(status_pendente_tarefa)):
-                print('Tarefa pendente: {}'.format(status_pendente_tarefa[listagem_pendente]))
-        if status_concluída_tarefa:
-            for listagem_concluida in range(len(status_concluída_tarefa)):
-                print('Tarefa conluída: {}'.format(status_concluída_tarefa[listagem_concluida]))
+        if status_pendente_tarefa or status_concluída_tarefa:
+            if status_pendente_tarefa:
+                for listagem_pendente in range(len(status_pendente_tarefa)):
+                    print('Tarefa pendente: {}'.format(status_pendente_tarefa[listagem_pendente]))
+            if status_concluída_tarefa:
+                for listagem_concluida in range(len(status_concluída_tarefa)):
+                    print('Tarefa conluída: {}'.format(status_concluída_tarefa[listagem_concluida]))
+        else:
+            print('Nenhuma tarefa encontrada.')
         print('-'*35)
     elif opção == 3:
         print('-'*45)
@@ -52,6 +55,26 @@ while opção != 6:
             print('Encerrando programa...')
             sleep(1.2)
         print('-' * 45)
+    elif opção == 4:
+        inspecionar_tarefa = str(input('Digite o nome da tarefa:')).strip()
+        if inspecionar_tarefa in status_pendente_tarefa:
+            confirmar_remove = str(input('Deseja remover essa tarefa? s/n:')).strip().upper()[0]
+            # remoção de tarefa pendente
+            index_pendente = status_pendente_tarefa.index(inspecionar_tarefa)
+            status_pendente_tarefa.remove(status_pendente_tarefa[index_pendente])
+            print('Removendo tarefa...')
+            sleep(1.5)
+            print('Tarefa removida!')
+        elif inspecionar_tarefa in status_concluída_tarefa:
+            confirmar_remove = str(input('Deseja remover essa tarefa? s/n:')).strip().upper()[0]
+            # remoção de tarefa concluída
+            index_concluida = status_concluída_tarefa.index(inspecionar_tarefa)
+            status_concluída_tarefa.remove(status_concluída_tarefa[index_concluida])
+            print('Removendo tarefa...')
+            sleep(1.5)
+            print('Tarefa removida!')
+        else:
+            print('Tarefa não encontrada.')
     print('-=' * 20)
     print('   ------------MENU ABERTO------------')
     print('''    [ 1 ] | Adicionar tarefas
