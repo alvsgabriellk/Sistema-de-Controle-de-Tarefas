@@ -41,7 +41,7 @@ while opção != 6:
         print('-'*35)
     elif opção == 3:
         print('-'*45)
-        concluir_tarefa = str(input('Deseja concluir alguma tarefa? s/n:')).strip().upper()[0]
+        concluir_tarefa = str(input('-----> Deseja concluir alguma tarefa? s/n:')).strip().upper()[0]
         if concluir_tarefa == 'S':
             inspecionar_tarefa = str(input('Digite aqui o nome da tarefa:')).strip()
             if inspecionar_tarefa in status_pendente_tarefa:
@@ -56,7 +56,7 @@ while opção != 6:
             sleep(1.2)
         print('-' * 45)
     elif opção == 4:
-        inspecionar_tarefa = str(input('Digite o nome da tarefa:')).strip()
+        inspecionar_tarefa = str(input('-----> Digite o nome da tarefa:')).strip()
         if inspecionar_tarefa in status_pendente_tarefa:
             confirmar_remove = str(input('Deseja remover essa tarefa? s/n:')).strip().upper()[0]
             # remoção de tarefa pendente
@@ -75,6 +75,8 @@ while opção != 6:
             print('Tarefa removida!')
         else:
             print('Tarefa não encontrada.')
+    elif opção == 5:
+        print('A fazer')
     print('-=' * 20)
     print('   ------------MENU ABERTO------------')
     print('''    [ 1 ] | Adicionar tarefas
